@@ -23,7 +23,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 
 mongoose
-    .connect('mongodb://localhost:27017/blog')
+    .connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));
     })
