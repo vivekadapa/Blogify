@@ -14,11 +14,9 @@ exports.createPost = async (req, res) => {
 };
 
 exports.getPosts = async (req, res) => {
-    const { author } = req.query;
-
+    // const { author } = req.query;
     try {
-        const filter = author ? { authorId: author } : {};
-        const posts = await Post.find(filter).populate('authorId', 'email');
+        const posts = await Post.find().populate('authorId', 'email');
         res.status(200).json(posts);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -27,15 +25,21 @@ exports.getPosts = async (req, res) => {
 
 
 exports.getPostsByAuthor = async (req, res) => {
-    const { author } = req.query;
-
     try {
-        const posts = await Post.find({ author });
-        if (!posts.length) {
-            return res.status(404).json({ error: 'No posts found for this author' });
-        }
+        const posts = await Post.find({ authorId: req.user.id });
         res.status(200).json(posts);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
+
+exports.getPostById = async (req, res) => {
+
+    try {
+        const posts = await Post.findById(req.params.id).populate('authorId');
+        res.status(200).json(posts);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}

@@ -21,6 +21,8 @@ exports.signup = async (req, res) => {
     }
 };
 
+
+
 exports.login = async (req, res) => {
     const { email, password } = req.body;
 
@@ -35,9 +37,38 @@ exports.login = async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.status(200).json({ token });
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'strict',
+            maxAge: 3600000,
+        });
+
+        res.status(200).json({ message: 'Login successful' });
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: error.message });
     }
+};
+
+
+exports.logout = (req, res) => {
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+    });
+    res.status(200).json({ message: 'Logout successful' });
+};
+
+
+
+exports.verify = (req, res) => {
+    res.status(200).json({ message: 'Token is valid', user: req.user });
 };

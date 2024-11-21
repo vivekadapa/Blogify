@@ -1,0 +1,26 @@
+.container {
+  padding: 1.25rem;
+}
+
+.title {
+  font-size: 2.25rem;
+  color: #212529;
+  margin-bottom: 1.875rem;
+  text-align: center;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  gap: 1.25rem;
+}
+
+@media () {
+  .title {
+      font-size: 1.75rem;
+  }
+
+  .posts {
+      grid-template-columns: 1fr;
+  }
+}
