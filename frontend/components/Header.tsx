@@ -25,7 +25,7 @@ const Header: React.FC = () => {
     return (
         <header className={styles.header}>
 
-            <Link href={'/'}>Blogsta</Link>
+            <Link href={'/'}>Blogify</Link>
             <nav className={menuOpen ? styles.navOpen : ''}>
                 <Link href="/" className={styles.link}>Home</Link>
                 {isLoggedIn ? (
