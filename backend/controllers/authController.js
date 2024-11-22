@@ -56,7 +56,7 @@ exports.login = async (req, res) => {
         const options = {
             httpOnly: true,
             secure: true,
-            sameSite: none
+            sameSite: 'none'
         }
 
         return res
