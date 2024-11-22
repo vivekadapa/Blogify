@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Layout from '@/components/Layout';
+// import Layout from '@/components/Layout';
 import styles from '@/styles/Signup.module.css';
 import { signup } from '@/lib/api';
 
@@ -26,7 +26,7 @@ const Signup: React.FC = () => {
     };
 
     return (
-        <Layout>
+        // <Layout>
             <div className={styles.container}>
                 <div>
                     <h1 className={styles.title}>Sign Up</h1>
@@ -60,7 +60,7 @@ const Signup: React.FC = () => {
                     {error && <p className={styles.error}>{error}</p>}
                 </div>
             </div>
-        </Layout>
+        // </Layout>
     );
 };
 
