@@ -6,7 +6,7 @@
 <ul>
   <li><strong>User Authentication</strong>: Login and signup functionality.</li>
   <li><strong>Operations</strong>: Users can create and read blog posts.</li>
-  <li><strong>Responsive UI</strong>: Built with Next.js and TypeScript to create a fast and responsive UI.</li>
+  <li><strong>Responsive UI</strong>: Built with Next.js and CSS modules.</li>
   <li><strong>Backend API</strong>: Developed with Node.js and Express to handle all data operations.</li>
   <li><strong>MongoDB Database</strong>: Stores user data and blog posts in a MongoDB database.</li>
   <li><strong>JWT Token-based Authentication</strong>: Secures API endpoints and ensures only authenticated users can create posts.</li>
@@ -78,7 +78,7 @@ npm run dev</code></pre>
 <h3>Authentication</h3>
 <ul>
   <li><strong>POST /api/auth/signup</strong>: Sign up a new user.</li>
-  <li><strong>POST /api/auth/login</strong>: Login for existing users, returns a JWT token.</li>
+  <li><strong>POST /api/auth/login</strong>: Login for existing users [sets the jwt token as a cookie with httpOnly attribute set to true , to prevent XSS attacks]</li>
   <li><strong>POST /api/auth/logout</strong>: Logout the current user, invalidates the JWT token.</li>
   <li><strong>GET /api/auth/verify</strong>: Verify if the token is valid or not</li>
 </ul>
