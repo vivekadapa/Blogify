@@ -2,6 +2,8 @@ import React from 'react';
 import { format } from 'date-fns';
 import styles from '@/styles/BlogPost.module.css';
 import Layout from '@/components/Layout';
+import { useRouter } from 'next/navigation'
+
 
 interface BlogPost {
     _id: string;
@@ -13,17 +15,24 @@ interface BlogPost {
     createdAt: string;
 }
 
-export default async function Page({ params }: { params: { id: string }; }) {
 
-    const { id } = params;
-
+export default async function Page({
+    params,
+}: {
+    params: Promise<{ id: string }>
+}) {
+    const id = (await params).id
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/posts/post/${id}`, {
         method: 'GET',
         credentials: 'include',
     });
 
     if (!res.ok) {
-        return <p>Error: Post not found!</p>;
+        return (
+            <Layout>
+                <p>Error: Post not found!</p>
+            </Layout>
+        );
     }
 
     const post: BlogPost = await res.json();
