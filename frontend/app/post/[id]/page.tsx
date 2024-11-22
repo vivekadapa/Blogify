@@ -1,5 +1,4 @@
 import React from 'react';
-import { format } from 'date-fns';
 import styles from '@/styles/BlogPost.module.css';
 import Layout from '@/components/Layout';
 
@@ -39,11 +38,11 @@ export default async function Page({
     return (
         <Layout>
             <div className={`${styles.post} ${styles.fullWidthPost}`}>
-                <p className={styles.meta}>{format(new Date(post.createdAt), 'MMM d, yyyy')}</p>
+                <p className={styles.meta}>{new Date(post.createdAt).toDateString()}</p>
                 <h2 className={styles.title}>{post.title.toUpperCase()}</h2>
                 <div className={styles.content}>{post.content}</div>
                 <p className={styles.author}>By {post.author.email}</p>
             </div>
-     </Layout>
+        </Layout>
     );
 }

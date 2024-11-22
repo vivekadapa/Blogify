@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styles from '../styles/Header.module.css';
@@ -8,12 +8,18 @@ import { logout } from '@/lib/api';
 
 const Header: React.FC = () => {
     const router = useRouter();
-    const isLoggedIn = typeof window !== 'undefined' && localStorage.getItem("isAuthenticated") === "true";
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+
+    useEffect(() => {
+        const loggedInStatus = localStorage.getItem("isAuthenticated") === "true";
+        setIsLoggedIn(loggedInStatus);
+    }, []);
 
     const handleLogout = async () => {
         await logout();
         localStorage.setItem("isAuthenticated", "false");
+        setIsLoggedIn(false);
         router.push('/login');
     };
 
@@ -48,4 +54,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-

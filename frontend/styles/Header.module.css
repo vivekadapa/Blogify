@@ -82,7 +82,7 @@
       outline: none;
   }
 
-  .menu div {
+  .menu span {
       width: 24px;
       height: 2px;
       background: #495057;
@@ -92,15 +92,15 @@
       transform-origin: 1px;
   }
 
-  .menu.open div:first-child {
+  .menu.open span:first-child {
       transform: rotate(45deg);
   }
 
-  .menu.open div:nth-child(2) {
+  .menu.open span:nth-child(2) {
       opacity: 0;
   }
 
-  .menu.open div:nth-child(3) {
+  .menu.open span:nth-child(3) {
       transform: rotate(-45deg);
   }
 
