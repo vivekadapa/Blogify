@@ -2,7 +2,6 @@ import React from 'react';
 import { format } from 'date-fns';
 import styles from '@/styles/BlogPost.module.css';
 import Layout from '@/components/Layout';
-import { useRouter } from 'next/navigation'
 
 
 interface BlogPost {
