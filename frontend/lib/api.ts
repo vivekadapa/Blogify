@@ -83,7 +83,7 @@ export async function createPost(postData: {
 }
 
 export async function getPosts() {
-  const response = await fetch(`${API_URL}/api/posts/posts`);
+  const response = await fetch(`${API_URL}/api/posts/posts`, { cache: 'no-store' });
 
   if (!response.ok) {
     throw new Error("Failed to fetch posts");
