@@ -2,9 +2,10 @@
 
 
 import React from 'react';
-import { Suspense } from 'react';
-import Header from './Header';
+import dynamic from 'next/dynamic';
 import styles from '../styles/Layout.module.css';
+const Header = dynamic(() => import('./Header'), { ssr: false });
+
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -13,9 +14,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <div className={styles.container}>
-            <Suspense fallback={<div>Loading...</div>}>
-                <Header />
-            </Suspense>
+            <Header />
             <main className={styles.main}>{children}</main>
         </div>
     );
