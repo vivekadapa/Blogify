@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Layout from '@/components/Layout';
 import styles from '@/styles/Login.module.css';
@@ -10,17 +10,24 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isClient, setIsClient] = useState(false);
     const router = useRouter();
+
+
+    useEffect(() => {
+        setIsClient(true); 
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             const response = await login({ email, password });
             if (response.ok) {
-                localStorage.setItem("isAuthenticated", "true");
+                if (isClient) {
+                    localStorage.setItem("isAuthenticated", "true");
+                }
                 router.push('/dashboard');
-            }
-            else {
+            } else {
                 const errorData = await response.json();
                 setError(errorData.error || 'Login failed');
             }
@@ -57,7 +64,6 @@ const Login: React.FC = () => {
                     </form>
                     {error && <p className={styles.error}>{error}</p>}
                 </div>
-
             </div>
         </Layout>
     );
