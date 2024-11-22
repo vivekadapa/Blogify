@@ -91,14 +91,14 @@ npm run dev</code></pre>
 <ul>
   <li><strong>POST /api/posts</strong>: Create a new blog post (authenticated users only).</li>
   <li><strong>GET /api/posts</strong>: Get all blog posts.</li>
-  <li><strong>GET /api/posts/author?authorId=</strong>: If authorId mentioned in the query then return posts by that particular author , if not mentioned returns the logged in author's posts.</li>
+  <li><strong>GET /api/posts/author?authorId=</strong>: If authorId mentioned in the query then return posts by that particular author , if not mentioned returns the logged in author's posts (authenticated users only)..</li>
   <li><strong>GET /api/post/:id</strong>: Get a single blog post by ID.</li>
 </ul>
 
 <h3>Pages</h3>
 <ul>
   <li><strong>HOME PAGE[/]</strong>: Lists all the blogs. It is a server side rendered page with no-cache</li>
-  <li><strong>DASHBOARD PAGE[/dashboard]</strong>: List blogs published by the user and provides interface for creating a new one.</li>
+  <li><strong>DASHBOARD PAGE[/dashboard]</strong>: Protected Route that lists all the blogs published by the user and provides interface for creating a new one.</li>
   <li><strong>BLOG DETAIL[/post/:id]</strong>: Displays complete content of the blog</li>
   <li><strong>LOGIN AND SIGNUP</strong>: Allows users to signup and login.</li>
 </ul>
