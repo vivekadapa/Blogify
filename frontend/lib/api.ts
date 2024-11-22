@@ -56,6 +56,7 @@ export const checkAuth = async () => {
 
     return response;
   } catch (error) {
+    console.log(error)
     throw new Error('Error during authentication check');
   }
 };

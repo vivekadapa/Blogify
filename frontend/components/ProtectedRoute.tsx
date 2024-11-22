@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { checkAuth } from '@/lib/api';
+import styles from '../styles/Home.module.css';
+
 
 const ProtectedRoute = (WrappedComponent: React.ComponentType) => {
-
-    return (props: any) => {
+    const ProtectedComponent = (props: any) => {
         const router = useRouter();
         const [isLoading, setIsLoading] = useState(true);
         const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,10 +18,13 @@ const ProtectedRoute = (WrappedComponent: React.ComponentType) => {
                     if (response.ok) {
                         setIsAuthenticated(true);
                     } else if (response.status === 401) {
-                        const refreshResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/auth/refresh`, {
-                            method: 'POST',
-                            credentials: 'include',
-                        });
+                        const refreshResponse = await fetch(
+                            `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/auth/refresh`,
+                            {
+                                method: 'POST',
+                                credentials: 'include',
+                            }
+                        );
 
                         if (refreshResponse.ok) {
                             setIsAuthenticated(true);
@@ -41,11 +45,13 @@ const ProtectedRoute = (WrappedComponent: React.ComponentType) => {
             verifyAndRefreshToken();
         }, [router]);
 
-        if (isLoading) return <p>Loading...</p>;
+        if (isLoading) return <div className={styles.noposts}>Loading...</div>;
         if (!isAuthenticated) return null;
 
         return <WrappedComponent {...props} />;
     };
+
+    return ProtectedComponent;
 };
 
 export default ProtectedRoute;
