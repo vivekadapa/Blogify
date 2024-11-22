@@ -6,7 +6,7 @@
 <ul>
   <li><strong>User Authentication</strong>: Login and signup functionality.</li>
   <li><strong>Operations</strong>: Users can create and read blog posts.</li>
-  <li><strong>Responsive UI</strong>: Built with Next.js and TypeScript to create a fast and responsive UI.</li>
+  <li><strong>Responsive UI</strong>: Built with Next.js and CSS modules.</li>
   <li><strong>Backend API</strong>: Developed with Node.js and Express to handle all data operations.</li>
   <li><strong>MongoDB Database</strong>: Stores user data and blog posts in a MongoDB database.</li>
   <li><strong>JWT Token-based Authentication</strong>: Secures API endpoints and ensures only authenticated users can create posts.</li>
