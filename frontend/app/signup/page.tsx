@@ -3,12 +3,11 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-// import Layout from '@/components/Layout';
 import styles from '@/styles/Signup.module.css';
 import { signup } from '@/lib/api';
+import Layout from '@/components/Layout';
 
 const Signup: React.FC = () => {
-    // const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -26,19 +25,12 @@ const Signup: React.FC = () => {
     };
 
     return (
-        // <Layout>
+        <Layout>
             <div className={styles.container}>
                 <div>
                     <h1 className={styles.title}>Sign Up</h1>
                     <form onSubmit={handleSubmit} className={styles.form}>
-                        {/* <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder="Name"
-                            required
-                            className={styles.input}
-                        /> */}
+
                         <input
                             type="email"
                             value={email}
@@ -60,7 +52,7 @@ const Signup: React.FC = () => {
                     {error && <p className={styles.error}>{error}</p>}
                 </div>
             </div>
-        // </Layout>
+        </Layout>
     );
 };
 

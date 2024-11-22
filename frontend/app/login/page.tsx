@@ -10,22 +10,17 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    // const [isClient, setIsClient] = useState(false);
+
     const router = useRouter();
 
-
-    // useEffect(() => {
-    //     setIsClient(true); 
-    // }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             const response = await login({ email, password });
             if (response.ok) {
-                // if (isClient) {
-                    localStorage.setItem("isAuthenticated", "true");
-                // }
+                localStorage.setItem("isAuthenticated", "true");
+
                 router.push('/dashboard');
             } else {
                 const errorData = await response.json();
@@ -65,7 +60,7 @@ const Login: React.FC = () => {
                     {error && <p className={styles.error}>{error}</p>}
                 </div>
             </div>
-         </Layout>
+        </Layout>
     );
 };
 
