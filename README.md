@@ -49,10 +49,13 @@ npm install</code></pre>
   <li>Set up the environment variables:</li>
   <ul>
     <li>For the backend, create a <code>.env</code> file in the <code>backend</code> folder and add your MongoDB connection string and JWT secret:</li>
-    <pre><code>PORT=5000
-JWT_SECRET=your-secret-key
-CORS_ORIGIN=http://localhost:3000
-MONGO_URI=mongodb://localhost:27017/blog</code></pre>
+    <pre><code>PORT=
+ACCESS_TOKEN_SECRET=
+ACCESS_TOKEN_EXPIRY=
+REFRESH_TOKEN_SECRET=
+REFRESH_TOKEN_EXPIRY=
+CORS_ORIGIN = 
+MONGO_URI = </code></pre>
   </ul>
 
   <li>For the frontend, create a <code>.env</code> file in the <code>frontend</code> directory with the following value:</li>
