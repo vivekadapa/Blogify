@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import Layout from '@/components/Layout';
+// import Layout from '@/components/Layout';
 import BlogPost from '@/components/BlogPost';
 import styles from '@/styles/Dashboard.module.css';
 import { getPostsByAuthor } from '@/lib/api';
@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
     };
 
     return (
-        <Layout>
+        // <Layout>
             <>
                 <div className={styles.container}>
                     <div>
@@ -61,7 +61,7 @@ const Dashboard: React.FC = () => {
                     <Modal setIsModalOpen={setIsModalOpen} fetchPosts={fetchPosts} />
                 )}
             </>
-        </Layout>
+        // </Layout>
     );
 };
 
