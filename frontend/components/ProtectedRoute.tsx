@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import { checkAuth } from '@/lib/api';
 
 const ProtectedRoute = (WrappedComponent: React.ComponentType) => {
+
     return (props: any) => {
         const router = useRouter();
         const [isLoading, setIsLoading] = useState(true);

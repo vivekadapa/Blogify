@@ -10,7 +10,7 @@ interface BlogPost {
     _id: string;
     title: string;
     content: string;
-    authorId: {
+    author: {
         email: string
     }
     createdAt: string;
@@ -39,7 +39,7 @@ export default async function Page({
                 <p className={styles.meta}>{format(new Date(post.createdAt), "MMM d, yyyy")}</p>
                 <h2 className={styles.title}>{post.title.toUpperCase()}</h2>
                 <div className={styles.content}>{post.content}</div>
-                <p className={styles.author}>By {post.authorId.email}</p>
+                <p className={styles.author}>By {post.author.email}</p>
             </div>
         </Layout>
     );

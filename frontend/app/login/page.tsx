@@ -26,6 +26,7 @@ const Login: React.FC = () => {
             }
 
         } catch (err) {
+            console.log(err)
             setError('Invalid email or password');
         }
     };

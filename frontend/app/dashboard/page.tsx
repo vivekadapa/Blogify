@@ -11,7 +11,9 @@ interface Post {
     _id: string;
     title: string;
     content: string;
-    author: string;
+    author: {
+        email: string
+    };
     createdAt: string;
 }
 

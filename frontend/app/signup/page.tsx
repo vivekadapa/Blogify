@@ -20,6 +20,7 @@ const Signup: React.FC = () => {
             await signup({ email, password });
             router.push('/login');
         } catch (err) {
+            console.log(err)
             setError('Error creating account');
         }
     };

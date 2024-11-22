@@ -103,7 +103,7 @@ export async function getPostsByAuthor() {
 
     return await response.json();
   } catch (error) {
-    console.error('Error fetching author posts:', error);
+    console.log('Error fetching author posts:', error);
     throw error;
   }
 }

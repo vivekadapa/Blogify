@@ -14,6 +14,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.get('/readiness', (req, res) => {
+    res.send("Backend Ready")
+})
+
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,

@@ -7,12 +7,13 @@ interface BlogPostProps {
     _id:string;
     title: string;
     content: string;
-    author: string;
+    author:{
+        email:string
+    };
     createdAt: string;
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ _id,title, content, author, createdAt }) => {
-
+const BlogPost: React.FC<BlogPostProps> = ({ _id,title, content, createdAt }) => {
     return (
         <article className={styles.post} >
             <p className={styles.meta}>{format(new Date(createdAt), "MMM d, yyyy")}</p>

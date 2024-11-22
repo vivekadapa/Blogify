@@ -7,7 +7,9 @@ interface Post {
   _id: string;
   title: string;
   content: string;
-  author: string;
+  author: {
+    email: string
+  };
   createdAt: string;
 }
 
@@ -21,9 +23,13 @@ export default async function Home() {
       <div className={styles.container}>
         <h1 className={styles.title}>Blogs</h1>
         <div className={styles.posts}>
-          {posts.map((post) => (
-            <BlogPost key={post._id} {...post} />
-          ))}
+          {
+            posts.length > 0 ? (
+              posts.map((post) => (
+                <BlogPost key={post._id} {...post} />
+              ))
+            ) : <div className={styles.noposts}>No posts yet</div>
+          }
         </div>
       </div>
     </Layout>
