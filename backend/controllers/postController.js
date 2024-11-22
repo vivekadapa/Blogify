@@ -16,6 +16,7 @@ exports.createPost = async (req, res) => {
 exports.getPosts = async (req, res) => {
     try {
         const posts = await Post.find().populate('author', 'email');
+        console.log(posts);  
         res.status(200).json(posts);
     } catch (error) {
         console.log(error)
