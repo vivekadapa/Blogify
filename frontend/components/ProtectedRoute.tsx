@@ -35,6 +35,7 @@ const ProtectedRoute = (WrappedComponent: React.ComponentType) => {
                         throw new Error('Token validation failed.');
                     }
                 } catch (error) {
+                    console.log(error)
                     setIsAuthenticated(false);
                     router.replace('/login');
                 } finally {
