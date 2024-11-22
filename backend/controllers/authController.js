@@ -24,7 +24,6 @@ exports.signup = async (req, res) => {
 
 
 const generateAccessAndRefereshTokens = async (userId) => {
-    // try {
     const user = await User.findById(userId)
     const accessToken = generateAccessToken(user)
     const refreshToken = generateRefreshToken(user)
@@ -34,10 +33,6 @@ const generateAccessAndRefereshTokens = async (userId) => {
 
     return { accessToken, refreshToken }
 
-
-    // } catch (error) {
-    //     res.status(500).json({ error: "Something went wrong while generating referesh and access token" });
-    // }
 }
 
 
@@ -56,24 +51,12 @@ exports.login = async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
         const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id)
-        // const token = jwt.sign(
-        //     { id: user._id },
-        //     process.env.JWT_SECRET,
-        //     { expiresIn: '1h' }
-        // );
 
-        // res.cookie('token', token, {
-        //     httpOnly: true,
-        //     secure: false,
-        //     sameSite: 'strict',
-        //     maxAge: 3600000,
-        // });
-
-        // res.status(200).json({ message: 'Login successful' });
 
         const options = {
             httpOnly: true,
-            secure: true
+            secure: true,
+            sameSite: none
         }
 
         return res
