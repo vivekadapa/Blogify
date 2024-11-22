@@ -81,7 +81,8 @@ npm run dev</code></pre>
 <h3>Authentication</h3>
 <ul>
   <li><strong>POST /api/auth/signup</strong>: Sign up a new user.</li>
-  <li><strong>POST /api/auth/login</strong>: Login for existing users [sets the jwt token as a cookie with httpOnly attribute set to true , to prevent XSS attacks]</li>
+  <li><strong>POST /api/auth/login</strong>: Login for existing users, if login valid then issues both access and refresh tokens as cookies</li>
+  <li><strong>POST /api/auth/refresh</strong>: Returns a new access token if the refresh token is valid</li>
   <li><strong>POST /api/auth/logout</strong>: Logout the current user, invalidates the JWT token.</li>
   <li><strong>GET /api/auth/verify</strong>: Verify if the token is valid or not</li>
 </ul>
@@ -90,8 +91,15 @@ npm run dev</code></pre>
 <ul>
   <li><strong>POST /api/posts</strong>: Create a new blog post (authenticated users only).</li>
   <li><strong>GET /api/posts</strong>: Get all blog posts.</li>
-  <li><strong>GET /api/posts/author</strong>: Get blog posts by the logged-in user (authenticated users only).</li>
+  <li><strong>GET /api/posts/author?authorId=</strong>: If authorId mentioned in the query then return posts by that particular author , if not mentioned returns the logged in author's posts.</li>
   <li><strong>GET /api/post/:id</strong>: Get a single blog post by ID.</li>
 </ul>
 
+<h3>Pages</h3>
+<ul>
+  <li><strong>HOME PAGE[/]</strong>: Lists all the blogs. It is a server side rendered page with no-cache</li>
+  <li><strong>DASHBOARD PAGE[/dashboard]</strong>: List blogs published by the user and provides interface for creating a new one.</li>
+  <li><strong>BLOG DETAIL[/post/:id]</strong>: Displays complete content of the blog</li>
+  <li><strong>LOGIN AND SIGNUP</strong>: Allows users to signup and login.</li>
+</ul>
 
