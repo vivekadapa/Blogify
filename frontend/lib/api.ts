@@ -1,5 +1,4 @@
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
-import { useRouter } from 'next/navigation';
 
 export async function login(credentials: { email: string; password: string }) {
   const response = await fetch(`${API_URL}/api/auth/login`, {
@@ -16,7 +15,6 @@ export async function login(credentials: { email: string; password: string }) {
 }
 
 export async function signup(userData: {
-  // name: string;
   email: string;
   password: string;
 }) {
@@ -46,6 +44,15 @@ export const checkAuth = async () => {
       method: 'GET',
       credentials: 'include',
     });
+    if (response.status === 401) {
+      const refreshResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/auth/refresh`, {
+        method: 'POST',
+        credentials: 'include',
+      });
+      if (refreshResponse.ok) {
+        return refreshResponse;
+      }
+    }
 
     return response;
   } catch (error) {
@@ -61,8 +68,7 @@ export async function createPost(postData: {
   const response = await fetch(`${API_URL}/api/posts/post`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json"
     },
     credentials: 'include',
     body: JSON.stringify(postData),
@@ -86,13 +92,18 @@ export async function getPosts() {
 }
 
 export async function getPostsByAuthor() {
-  const response = await fetch(`${API_URL}/api/posts/posts/author`, {
-    credentials: 'include'
-  });
+  try {
+    const response = await fetch(`${API_URL}/api/posts/posts/author`, {
+      credentials: 'include',
+    });
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch author posts");
+    if (!response.ok) {
+      throw new Error(`Failed to fetch author posts: ${response.statusText}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching author posts:', error);
+    throw error;
   }
-
-  return response.json();
 }

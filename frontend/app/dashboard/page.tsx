@@ -1,11 +1,11 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
-import ProtectedRoute from '@/components/ProtectedRoute';
 import BlogPost from '@/components/BlogPost';
 import styles from '@/styles/Dashboard.module.css';
 import { getPostsByAuthor } from '@/lib/api';
 import Modal from '@/components/Modal';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 interface Post {
     _id: string;
@@ -28,7 +28,7 @@ const Dashboard: React.FC = () => {
             const authorPosts = await getPostsByAuthor();
             setPosts(authorPosts);
         } catch (error) {
-            console.log('Error fetching posts:', error);
+            console.error('Error fetching posts:', error);
         }
     };
 
@@ -47,15 +47,12 @@ const Dashboard: React.FC = () => {
                             </button>
                         </div>
                         <div className={styles.posts}>
-                            {
-                                posts.length > 0 ? (
-                                    posts.map((post) => (
-                                        <BlogPost key={post._id} {...post} />
-                                    ))
-                                ) : <div className={styles.noposts}>You have not posted Yet</div>
-                            }
+                            {posts.length > 0 ? (
+                                posts.map((post) => <BlogPost key={post._id} {...post} />)
+                            ) : (
+                                <div className={styles.noposts}>You have not posted Yet</div>
+                            )}
                         </div>
-
                     </div>
                 </div>
                 {isModalOpen && (
