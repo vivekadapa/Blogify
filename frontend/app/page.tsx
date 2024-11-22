@@ -1,4 +1,4 @@
-// import Layout from '@/components/Layout';
+import Layout from '@/components/Layout';
 import BlogPost from '../components/BlogPost';
 import styles from '../styles/Home.module.css';
 import { getPosts } from '@/lib/api';
@@ -19,7 +19,7 @@ export default async function Home() {
 
   const posts: Post[] = await getPosts();
   return (
-    // <Layout>
+    <Layout>
       <div className={styles.container}>
         <h1 className={styles.title}>Blogs</h1>
         <div className={styles.posts}>
@@ -32,7 +32,7 @@ export default async function Home() {
           }
         </div>
       </div>
-    // </Layout>
+   </Layout>
   );
 }
 

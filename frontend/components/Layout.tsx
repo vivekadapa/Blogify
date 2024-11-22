@@ -2,6 +2,7 @@
 
 
 import React from 'react';
+import { Suspense } from 'react';
 import Header from './Header';
 import styles from '../styles/Layout.module.css';
 
@@ -12,7 +13,9 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <div className={styles.container}>
-            <Header />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Header />
+            </Suspense>
             <main className={styles.main}>{children}</main>
         </div>
     );

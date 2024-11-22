@@ -4,27 +4,28 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '@/styles/Login.module.css';
 import { login } from '@/lib/api';
+import Layout from '@/components/Layout';
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [isClient, setIsClient] = useState(false);
+    // const [isClient, setIsClient] = useState(false);
     const router = useRouter();
 
 
-    useEffect(() => {
-        setIsClient(true); 
-    }, []);
+    // useEffect(() => {
+    //     setIsClient(true); 
+    // }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             const response = await login({ email, password });
             if (response.ok) {
-                if (isClient) {
+                // if (isClient) {
                     localStorage.setItem("isAuthenticated", "true");
-                }
+                // }
                 router.push('/dashboard');
             } else {
                 const errorData = await response.json();
@@ -38,7 +39,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        // <Layout>
+        <Layout>
             <div className={styles.container}>
                 <div>
                     <h1 className={styles.title}>Login</h1>
@@ -64,7 +65,7 @@ const Login: React.FC = () => {
                     {error && <p className={styles.error}>{error}</p>}
                 </div>
             </div>
-        // </Layout>
+         </Layout>
     );
 };
 

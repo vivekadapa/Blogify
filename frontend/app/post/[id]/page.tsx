@@ -1,7 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 import styles from '@/styles/BlogPost.module.css';
-// import Layout from '@/components/Layout';
+import Layout from '@/components/Layout';
 
 
 interface BlogPost {
@@ -28,22 +28,22 @@ export default async function Page({
 
     if (!res.ok) {
         return (
-            // <Layout>
+            <Layout>
                 <p>Error: Post not found!</p>
-            // </Layout>
+            </Layout>
         );
     }
 
     const post: BlogPost = await res.json();
 
     return (
-        // <Layout>
+        <Layout>
             <div className={`${styles.post} ${styles.fullWidthPost}`}>
                 <p className={styles.meta}>{format(new Date(post.createdAt), 'MMM d, yyyy')}</p>
                 <h2 className={styles.title}>{post.title.toUpperCase()}</h2>
                 <div className={styles.content}>{post.content}</div>
                 <p className={styles.author}>By {post.author.email}</p>
             </div>
-        // </Layout>
+     </Layout>
     );
 }

@@ -1,4 +1,6 @@
-"use client"
+// Correct Header component
+"use client";
+
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -7,9 +9,8 @@ import { logout } from '@/lib/api';
 
 const Header: React.FC = () => {
     const router = useRouter();
-    const isLoggedIn = localStorage.getItem("isAuthenticated") === "true" ? true : false
+    const isLoggedIn = typeof window !== 'undefined' && localStorage.getItem("isAuthenticated") === "true";
     const [menuOpen, setMenuOpen] = useState(false);
-
 
     const handleLogout = async () => {
         await logout();
@@ -21,10 +22,8 @@ const Header: React.FC = () => {
         setMenuOpen(!menuOpen);
     };
 
-
     return (
         <header className={styles.header}>
-
             <Link href={'/'}>Blogify</Link>
             <nav className={menuOpen ? styles.navOpen : ''}>
                 <Link href="/" className={styles.link}>Home</Link>
