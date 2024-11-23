@@ -83,6 +83,7 @@
   }
 
   .menu span {
+      display:block;
       width: 24px;
       height: 2px;
       background: #495057;
