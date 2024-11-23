@@ -9,7 +9,7 @@
   <li><strong>Responsive UI</strong>: Built with Next.js and CSS modules.</li>
   <li><strong>Backend API</strong>: Developed with Node.js and Express to handle all data operations.</li>
   <li><strong>MongoDB Database</strong>: Stores user data and blog posts in a MongoDB database.</li>
-  <li><strong>JWT Token-based Authentication</strong>: Secures API endpoints and ensures only authenticated users can create posts.</li>
+  <li><strong>JWT Token-based Authentication</strong>: Uses both access token[short lived] and refresh token[long lived] for better security</li>
 </ul>
 
 <h2>Tech Stack</h2>
