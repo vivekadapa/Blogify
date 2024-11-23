@@ -45,9 +45,9 @@ const Header: React.FC = () => {
                 )}
             </nav>
             <button onClick={handleMenu} className={`${styles.menu} ${menuOpen ? styles.open : ''}`}>
-                <div></div>
-                <div></div>
-                <div></div>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </header>
     );
